@@ -25,14 +25,15 @@ total_platforms = []
 
 
 for game in platforms_div:
-    temp = game.xpath('.//span[contains(@class, "platform_img")]')
-    platforms = [t.get('class').split(' ')[-1] for t in temp]
+    temp = game.xpath('.//span[contains(@class, "platform_img")]') #Return spans which have only the "platform_img" class
+    platforms = [t.get('class').split(' ')[-1] for t in temp]#Extract 'class' attribute from a span, split the obtained string and store the last part(the platform name) in the list
     if 'hmd_separator' in platforms:
         platforms.remove('hmd_separator')
     total_platforms.append(platforms)
 
 output = []
-for info in zip(titles, prices, tags, total_platforms):
+for info in zip(titles, prices, tags, total_platforms):#Iterate over all of the lists in parallel usign zip 
+    #Create dictionary for each game and assign the title, price, tags and platforms as a separate key in each dictionary/game
     resp = {}
     resp['title'] = info[0]
     resp['price'] = info[1]
